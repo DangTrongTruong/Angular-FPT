@@ -12,6 +12,8 @@ import { ListTaskComponent } from './screens/admin/components/list-task/list-tas
 import { AddTaskComponent } from './screens/admin/components/add-task/add-task.component';
 import { MemberComponent } from './screens/admin/components/member/member.component';
 import { AddMemberComponent } from './screens/admin/components/add-member/add-member.component';
+import { AuthGuard } from './guard/auth.guard';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,10 @@ import { AddMemberComponent } from './screens/admin/components/add-member/add-me
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
