@@ -6,9 +6,9 @@
                 <div class="card" style="width: 100%;">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                    <h5 class="card-title">Tổng số dự án: {{totalProject}}</h5>
+                    <h5 class="card-title">Projects: {{projects}}</h5>
 
-                    <a [routerLink]="['project']"  class="btn btn-primary">Chi tiết</a>
+                    <a [routerLink]="['project']"  class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>
@@ -16,9 +16,9 @@
                 <div class="card" style="width: 100%;">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                    <h5 class="card-title">Số thành viên: {{totalMember}}</h5>
+                    <h5 class="card-title">Members: {{members}}</h5>
 
-                    <a [routerLink]="['member']" class="btn btn-primary">Chi tiết</a>
+                    <a [routerLink]="['member']" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>
@@ -26,22 +26,13 @@
                 <div class="card" style="width: 100%;">
                     <!-- <img src="..." class="card-img-top" alt="..."> -->
                     <div class="card-body">
-                    <h5 class="card-title">Hoàn thanh: {{completedTask}}</h5>
+                    <h5 class="card-title">Tasks: {{tasks}}</h5>
 
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
+                    <a [routerLink]="['tasks']" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="card" style="width: 100%;">
-                    <!-- <img src="..." class="card-img-top" alt="..."> -->
-                    <div class="card-body">
-                    <h5 class="card-title">Chưa hoàn thành: {{doingTask}}</h5>
 
-                    <a href="#" class="btn btn-primary">Chi tiết</a>
-                    </div>
-                </div>
-            </div>
       </div>
     </main>
 

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/services/project.service';
+import { TaskService } from 'src/app/services/task.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-list-task',
@@ -6,47 +10,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-task.component.css']
 })
 export class ListTaskComponent implements OnInit {
-
-  tasks = [
-    {
-      id: 1,
-      projectId:1,
-      name: 'Task 1',
-      description:"task 1 project 1",
-      status:'pending'
-    },
-    {
-      id: 2,
-      projectId:1,
-      name: 'Task 2',
-      description:"task 2 project 1",
-      status:'reject'
-    },
-    {
-      id: 1,
-      projectId:2,
-      name: 'Task 1',
-      description:"task 1 project 2",
-      status:'resolve'
-    },
-    {
-      id: 2,
-      projectId:2,
-      name: 'Task 2',
-      description:"task 2 project 2",
-      status:'resolve'
-    },
-    {
-      id: 3,
-      projectId:2,
-      name: 'Task 3',
-      description:"task 3 project 2",
-      status:'resolve'
-    },
-  ]
-  constructor() { }
+  title = 'Angular Search Using ng2-search-filter';
+  searchText:any;
+  projectId: string = '';
+  tasks:  Array<any> = [];
+  user:any = {};
+  project:any = {};
+  constructor(private taskService:TaskService,private projectService:ProjectService, private userService:UserService,private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.activatedRoute.params.subscribe(urlParams => {
+      this.projectId = urlParams['projectId'];
+      this.taskService.getData().subscribe(response => {
+        console.log(response);
+        this.tasks = response.tasks.filter( (item:any) =>{
+          this.projectService.getOne(item.project).subscribe((response:any) => {
+            this.project = response.project
+          })
+          this.userService.getOne(item.user).subscribe((response:any) => {
+            this.user = response.user
+          })
+         return item.project === this.projectId
+        });
+
+      })
+    })
+  }
+
+  removeTask(id: number){
+    if(window.confirm('Ban co chac chan muon xoa khong ?')){
+      this.taskService.remove(id).subscribe(() => {
+        this.tasks = this.tasks.filter(item => item._id != id);
+      })
+    }
   }
 
 }

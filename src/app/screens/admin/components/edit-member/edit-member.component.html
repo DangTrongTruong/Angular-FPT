@@ -1,0 +1,28 @@
+<h3>Edit member</h3>
+<div class="container">
+    <form [formGroup]="memberForm" (ngSubmit)="submitForm()">
+        <div class="col-6 offset-3">
+            <div class="form-group mt-3">
+                <label for="">Name project</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group mt-3">
+                <label for="">Email</label>
+                <input type="email" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Password</label>
+              <input type="password" class="form-control" formControlName="password">
+            </div>
+          <div class="form-group mt-3">
+              <label for="">Role</label>
+              <select formControlName="role" class="form-select">
+                <option value="leader">Leader</option>
+                <option value="employee">Employee</option>
+              </select>
+          </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary">Change</button>
+            </div>
+        </div>
+    </form>

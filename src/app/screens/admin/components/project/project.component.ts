@@ -1,47 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
-  styleUrls: ['./project.component.css']
+  styleUrls: ['./project.component.css'],
 })
 export class ProjectComponent implements OnInit {
-projects = [
-    {
-      id: 1,
-      date:Date.now(),
-      name: "Dự án 1",
-      members: Math.floor(Math.random() * 10),
-    },
-    {
-      id: 2,
-      date:Date.now(),
-      name: "Dự án 2",
-      members: Math.floor(Math.random() * 10),
-    },
-    {
-      id: 3,
-      date:Date.now(),
-      name: "Dự án 3",
-      members: Math.floor(Math.random() * 10),
-    },
-    {
-      id: 4,
-      date:Date.now(),
-      name: "Dự án 4",
-      members: Math.floor(Math.random() * 10),
-    },
-    {
-      id: 5,
-      date:Date.now(),
-      name: "Dự án 5",
-      members: Math.floor(Math.random() * 10),
-    },
-
-  ]
-  constructor() { }
+  title = 'Angular Search Using ng2-search-filter';
+  searchText:any;
+  projects:  Array<any> = [];
+  constructor(private projectService: ProjectService) {}
 
   ngOnInit(): void {
+    this.projectService.getData().subscribe(response => {
+      this.projects = response.projects;
+      console.log(response);
+    })
   }
 
+  removeProject(id: number){
+    if(window.confirm('Ban co chac chan muon xoa khong ?')){
+      this.projectService.remove(id).subscribe(() => {
+        this.projects = this.projects.filter(item => item._id != id);
+      })
+    }
+  }
 }

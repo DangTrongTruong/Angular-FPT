@@ -1,0 +1,46 @@
+<h3>Edit Task</h3>
+<div class="container">
+    <form [formGroup]="taskForm" (ngSubmit)="submitForm()">
+        <div class="col-6 offset-3">
+            <div class="form-group mt-3">
+                <label for="">Name Task</label>
+                <input type="text" class="form-control" formControlName="name">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Description</label>
+              <input type="text" class="form-control" formControlName="description">
+          </div>
+            <div class="form-group mt-3">
+                <label for="">Date start</label>
+                <input type="date" class="form-control" formControlName="createAt">
+            </div>
+            <div class="form-group mt-3">
+                <label for="">Date Finnish</label>
+                <input type="Date" class="form-control" formControlName="finnishAt">
+            </div>
+            <div class="form-group mt-3">
+              <label for="">Status</label>
+              <select formControlName="status" class="form-select">
+                <option value="no status">No status</option>
+                <option value="complete">Complete</option>
+                <option value="inComplete">inComplete</option>
+              </select>
+           </div>
+           <div class="form-group mt-3">
+            <label for="">Project name</label>
+            <select  formControlName="project" class="form-select">
+              <option *ngFor="let pr of projects" value={{pr._id}}>{{pr.name}}</option>
+            </select>
+         </div>
+         <div class="form-group mt-3">
+          <label for="">User name</label>
+          <select  formControlName="user" class="form-select">
+            <option *ngFor="let user of users"  value={{user._id}}>{{user.name}}</option>
+
+          </select>
+       </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>

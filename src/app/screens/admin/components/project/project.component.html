@@ -5,6 +5,9 @@
       <div class="mt-3">
         <a [routerLink]="['add-project']"  class="btn btn-sm btn-success">Create project</a>
           <h3 class="mt-3">List Project</h3>
+          <form class="d-flex mt-3">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Start searching name project">
+          </form>
           <table class="table table-hover">
               <thead>
                   <tr>
@@ -17,16 +20,16 @@
                   </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let pr of projects">
-                      <td scope="row">{{pr.id}}</td>
-                      <td>{{pr.date}}</td>
+                  <tr *ngFor="let pr of projects | filter:searchText">
+                      <td scope="row">{{pr._id}}</td>
+                      <td>{{pr.startDate}}</td>
                       <td>{{pr.name}}</td>
-                      <td>{{pr.members}}</td>
-                      <td><a [routerLink]="['list-task']" class="btn btn-sm btn-success">List Task {{pr.name}}</a></td>
+                      <td>{{pr.teamSize}}</td>
+                      <td><a [routerLink]="['list-task',pr._id]" class="btn btn-sm btn-success">List Task {{pr.name}}</a></td>
                       <td>
-                          <a href="" class="btn btn-sm btn-warning">Sửa</a>
+                        <a [routerLink]="['edit-project',pr._id]" class="btn btn-sm btn-info">Sửa</a>
                           &nbsp;
-                          <a href="" class="btn btn-sm btn-danger">Xóa</a>
+                          <button (click)="removeProject(pr._id)" class="btn btn-sm btn-danger">Xóa</button>
                       </td>
                   </tr>
 

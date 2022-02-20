@@ -1,23 +1,24 @@
-<div class="login-wrapper">
+<div class="wrapper-login">
+  <h2 nz-typography>Login</h2>
+  <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="mail">
+          <input type="text" nz-input formControlName="email" placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
 
-  <main class="form-signin text-center">
-    <form>
-      <h1 class="h3 mb-3 fw-normal">Login</h1>
-      <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-      </div>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    Or
+    <a [routerLink]="['/register']">register now!</a>
+  </form>
 
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitLogin()">Login</button>
-    </form>
-  </main>
 </div>

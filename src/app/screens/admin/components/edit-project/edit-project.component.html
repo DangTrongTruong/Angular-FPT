@@ -1,0 +1,26 @@
+<h3>Edit project</h3>
+<div class="container">
+    <form [formGroup]="projectForm" (ngSubmit)="submitForm()">
+        <div class="col-6 offset-3">
+            <div class="form-group mt-3">
+                <label for="">Name project</label>
+                <input type="text" class="form-control" formControlName="name">
+                <span class="text-danger" *ngIf="projectForm.get('name')?.invalid && (projectForm.get('name')?.dirty || projectForm.get('name')?.touched)">Tên dự án không hợp lệ</span>
+            </div>
+            <div class="form-group mt-3">
+                <label for="">Date start</label>
+                <input type="date" class="form-control" formControlName="startDate">
+            </div>
+            <div class="form-group mt-3">
+                <label for="">Team size</label>
+                <input type="number" class="form-control" formControlName="teamSize">
+                <div *ngIf="projectForm.get('team_size')?.invalid && (projectForm.get('team_size')?.dirty || projectForm.get('team_size')?.touched)">
+                    <span class="text-danger" *ngIf="projectForm.get('team_size')?.errors?.['required']">Hãy nhập số thành viên</span>
+                    <span class="text-danger" *ngIf="projectForm.get('team_size')?.errors?.['min']">Số thành viên tối thiểu bằng 0</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>

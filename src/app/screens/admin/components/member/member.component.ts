@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-member',
@@ -6,36 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member.component.css']
 })
 export class MemberComponent implements OnInit {
-  members = [
-    {
-      id: 1,
-      name: 'Truong',
-      email:'truongdtph13126@gmail.com'
-    },
-    {
-      id:2,
-      name: 'Loc',
-      email:'loc@gmail.com'
-    },
-    {
-      id:3,
-      name: 'Dung',
-      email:'dung@gmail.com'
-    },
-    {
-      id:4,
-      name: 'Hai',
-      email:'hai@gmail.com'
-    },
-    {
-      id:5,
-      name: 'Huy',
-      email:'huy@gmail.com'
-    },
-  ]
-  constructor() { }
+  members:  Array<any> = [];
+  title = 'Angular Search Using ng2-search-filter';
+  searchText:any;
+  constructor(private userService:UserService) {}
 
   ngOnInit(): void {
+    this.userService.getData().subscribe(response => {
+      this.members = response.users;
+      console.log(response);
+    })
+  }
+
+  removeMember(id: number){
+    if(window.confirm('Ban co chac chan muon xoa khong ?')){
+      this.userService.remove(id).subscribe(() => {
+        this.members = this.members.filter(item => item._id != id);
+      })
+    }
   }
 
 }
