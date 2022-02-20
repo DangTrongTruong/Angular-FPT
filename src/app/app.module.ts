@@ -90,6 +90,8 @@ import { EditMemberComponent } from './screens/admin/components/edit-member/edit
 import { TaskComponent } from './screens/admin/task/task.component';
 import { EditTaskComponent } from './screens/admin/edit-task/edit-task.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AuthGuard } from './guard/auth.guard';
+import { AuthService } from './services/auth.service';
 
 registerLocaleData(en);
 // import { AuthGuard } from './guard/auth.guard';
@@ -193,8 +195,8 @@ registerLocaleData(en);
     BrowserAnimationsModule,
   ],
   providers: [
-    // AuthService,
-    // AuthGuard
+    AuthService,
+    AuthGuard,
   { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]
 })

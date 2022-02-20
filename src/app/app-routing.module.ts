@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guard/auth.guard';
 // import { AuthGuard } from './guard/auth.guard';
 import { AdminComponent } from './screens/admin/admin.component';
 import { AddMemberComponent } from './screens/admin/components/add-member/add-member.component';
@@ -41,7 +42,7 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'dashboard/member',

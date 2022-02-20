@@ -21,6 +21,9 @@ export class AuthService {
   login(data: Object): Observable<any[]>{
     return this.httpClient.post<any[]>(`http://localhost:8080/api/login`,data)
   }
+  logout(): Observable<any[]>{
+    return this.httpClient.get<any[]>(`http://localhost:8080/api/logout`)
+  }
 
 
 }
